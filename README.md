@@ -6,6 +6,7 @@ Run the app by: uvicorn main:app
 
 # Learning Path
 
+- Isolated python env
 - Path Operations
 - ntro toman
 - HTTP Requests
