@@ -4,13 +4,16 @@ Run the app by: uvicorn main:app
 
 # Current Features
 
+# Tutorial Source
+https://www.youtube.com/watch?v=0sOvCWFmrtA
+
 # Learning Path
 
 - Isolated python venv
 - Path Operations
-- ntro toman >> We are Here!
+- intro potoman
 - HTTP Requests
-- Schema Validation with Pydantic
+- Schema Validation with Pydantic  >> We are Here!
 - CRUD Operations
 - Storing in Array
 - Creating
