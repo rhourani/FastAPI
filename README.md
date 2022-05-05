@@ -7,7 +7,7 @@ Run the app by: uvicorn main:app
 # Learning Path
 
 - Isolated python venv
-- Path Operations
+- Path Operations >> We are Here!
 - ntro toman
 - HTTP Requests
 - Schema Validation with Pydantic
