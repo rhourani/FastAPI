@@ -4,26 +4,26 @@ Run the app by: uvicorn main:app
 
 # Current Features
 
-# Upcoming Features
+# Learning Path
 
 Path Operations
 ntro toman
 HTTP Requests
 Schema Validation with Pydantic
 CRUD Operations
-1:29:44 Storing in Array
-1:34:06 Creating
-1:38:15 Postman Collections & saving requests
-1:39:47 Retrieve One
-1:48:10 Path order Matters
-1:52:46 Changing response Status Codes
-2:01:49 Deleting
-2:10:31 Updating
-2:18:02 Automatic Documentation
-2:21:34 Python packages
-2:24:11 Database Intro
-2:28:54 Postgres Windows Install
-2:31:28 Postgres Mac Install
+Storing in Array
+Creating
+Postman Collections & saving requests
+Retrieve One
+Path order Matters
+Changing response Status Codes
+Deleting
+Updating
+Automatic Documentation
+Python packages
+Database Intro
+Postgres Windows Install
+Postgres Mac Install
 2:34:26 Database Schema & Tables
 2:44:35 Managing Postgres with PgAdmin GUI
 3:12:10 Your first SQL Query
