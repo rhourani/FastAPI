@@ -6,9 +6,9 @@ Note: You can find the same API written with C# .Net 6 [here](https://github.com
 You have to have python 3.10 installed
 
 Run the app by: 
-Open CMD terminal
-switch to virtual env by: venv\Scripts\activate.bat
-and then : uvicorn main:app --reload
+- Open CMD terminal
+- switch to virtual env by: venv\Scripts\activate.bat
+- and then : uvicorn main:app --reload
 
 A quick loom video https://www.loom.com/share/5f7cdd9d48bb4ba18446c2e6625b8dc9
 
