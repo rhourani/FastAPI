@@ -1,4 +1,4 @@
-from fastapi import FastAPI,  status
+from fastapi import FastAPI, HTTPException,  status
 from game_dto import  CreatGame, UpdateGame
 from game_engine import GameEngine
 
@@ -22,7 +22,12 @@ async def get_game_by_id(game_id: str):
 @app.put("/api/v1/games/{game_id}", status_code=status.HTTP_200_OK)
 async def update_game(game_id: str, updated_game: UpdateGame):
     GameEngineObject = GameEngine()
-    return GameEngineObject.update_game_service(game_id, updated_game)
+    response = GameEngineObject.update_game_service(game_id, updated_game)
+    if response['isError'] == True:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=response['message'])
+    else:
+        return response['TicTacToeGameDTO']
     
 @app.delete("/api/v1/games/{game_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_game(game_id):

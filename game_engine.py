@@ -3,8 +3,7 @@
 from random import randrange
 import uuid
 
-from http.client import HTTPException
-from fastapi import Response, status
+from fastapi import HTTPException, Response, status
 from game_dto import CreatGame, Game, Status, UpdateGame, Winner
 
 class GameEngine:
@@ -99,28 +98,27 @@ class GameEngine:
         return Response(status_code = status.HTTP_204_NO_CONTENT)
   
     def is_game_draw(self, chBoard):
-        print(chBoard)
         tempBoarStr = ''
         tempBoarStr = tempBoarStr.join(chBoard)
-        return '-' in chBoard
+        return '-' not in tempBoarStr
 
     def is_game_won(self, chBoard):
         if self.check_winning(chBoard, 0, 1, 2):
             return {"is_win": True, "winner_name": chBoard[0]}
         if self.check_winning(chBoard, 3, 4, 5):
-            return {"is_win": True, "winner_name": chBoard[0]}
+            return {"is_win": True, "winner_name": chBoard[3]}
         if self.check_winning(chBoard, 6, 7, 8):
-            return {"is_win": True, "winner_name": chBoard[0]}
+            return {"is_win": True, "winner_name": chBoard[6]}
         if self.check_winning(chBoard, 0, 3, 6):
             return {"is_win": True, "winner_name": chBoard[0]}
         if self.check_winning(chBoard, 1, 4, 7):
-            return {"is_win": True, "winner_name": chBoard[0]}
+            return {"is_win": True, "winner_name": chBoard[1]}
         if self.check_winning(chBoard, 2, 5, 8):
-            return {"is_win": True, "winner_name": chBoard[0]}
+            return {"is_win": True, "winner_name": chBoard[2]}
         if self.check_winning(chBoard, 0, 4, 8):
             return {"is_win": True, "winner_name": chBoard[0]}
         if self.check_winning(chBoard, 2, 4, 6):
-            return {"is_win": True, "winner_name": chBoard[0]}
+            return {"is_win": True, "winner_name": chBoard[2]}
         return {"is_win": False}
 
     def check_winning(self, chBoard, pos1, pos2, pos3):
@@ -140,11 +138,15 @@ class GameEngine:
     def game_status(self, winner_name):
         return Status.X_WON.name if winner_name == 'X' or winner_name == 'x' else Status.O_WON.name
         
-    def game_engine(self, game : Game, new_board):
-        if new_board == None:
+    def game_engine(self, game : Game, new_board1):
+        if new_board1 == None:
          return self.update_game_obj_response(True, "No such game with the uuid: " + game.Id + " provided", None)
         
         #make sure game's rules are followed correctly
+        new_board = []
+        for ch in new_board1:
+            new_board.append(ch)
+
         old_board = "".join(game['board'])
         if not self.compare_changes_in_old_and_new_board(new_board, old_board):
             return self.update_game_obj_response(True, 
@@ -170,12 +172,12 @@ class GameEngine:
             index = randrange(9)
             if new_board[index] == '-': 
                 break
-        new_board[index] = 'O' if game.user_is_crosses == True else 'X'
+        new_board[index] = 'O' if game['user_is_crosses'] == True else 'X'
         #validate if PC won
         winner = self.is_game_won(new_board)
-        if winner['isWin']:
+        if winner['is_win']:
             game['board'] = "".join(new_board)
-            game['status'] = self.game_status(winner['WinnerName'])
+            game['status'] = self.game_status(winner['winner_name'])
             self.update_game_obj(game)
             return self.update_game_obj_response(False, "Game is Won!", game)
             
@@ -185,12 +187,9 @@ class GameEngine:
         return self.update_game_obj_response(False, "User Turn", game)
 
     def update_game_obj_response(self, is_error, error_message, game : Game):
-        return 
-        {
-            "message": error_message,
+        return {"message": error_message,
             "isError": is_error,
-            "TicTacToeGameDTO": game
-        }
+            "TicTacToeGameDTO": game}
 
     def update_game_obj(self, game: Game):
         new_game = Game()
@@ -204,3 +203,4 @@ class GameEngine:
 
         index = self.find_index_game(game['id'])
         self.my_games[index] = game_dict
+        
