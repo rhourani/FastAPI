@@ -9,6 +9,7 @@ Run the app by:
 - Open CMD terminal
 - switch to virtual env by: venv\Scripts\activate.bat
 - and then : uvicorn main:app --reload
+- then open: http://127.0.0.1:8000/docs 
 
 A quick loom video https://www.loom.com/share/5f7cdd9d48bb4ba18446c2e6625b8dc9
 
