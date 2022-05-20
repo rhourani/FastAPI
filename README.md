@@ -1,6 +1,6 @@
 # FastAPI tic tac toe game
 
-Note: Currently the CRUD operations done totally and working on the logic itself of the game engine
+Note: You can find the same API written with C# .Net 6 [here](https://github.com/rhourani/SSH-TicTacToe)
 
 # Run
 You have to have python 3.10 installed
