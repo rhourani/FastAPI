@@ -6,6 +6,7 @@ class Game(BaseModel):
     id: Optional[str] = None
     board:  Optional[str] = None
     status:  Optional[str] = None
+    user_is_crosses: Optional[bool] = None
 
 
 class CreatGame(BaseModel):
@@ -13,6 +14,10 @@ class CreatGame(BaseModel):
 
 class UpdateGame(BaseModel):
     board: str
+
+class Winner(BaseModel):
+    is_win: Optional[bool] = None
+    winner_name: Optional[str] = None
 
 class Status(Enum):
     RUNNING = 10
